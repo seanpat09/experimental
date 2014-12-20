@@ -1,0 +1,8 @@
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" >
+<apex:remoteObjects >
+        <apex:remoteObjectModel name="Account" jsShorthand="Acct" 
+            fields="Name,Id">
+            
+        </apex:remoteObjectModel>
+    </apex:remoteObjects>
+</apex:page>

@@ -1,0 +1,62 @@
+<apex:page showHeader="true" sidebar="true" controller="BootstrapPage">
+<apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+<apex:includeScript value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"/>
+<style>
+* {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+#bodyCell *:before, #bodyCell *:after, #bodyCell * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.2em;
+}
+.title {
+    font-size: 2em;
+}
+.subtitle {
+    font-size: 1.5em;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+</style>
+<div class="container">
+    <div class="col-md-6">
+        <h1 class="title">Page Alert Samples</h1>
+        <apex:form >
+            <h2 class="subtitle">Static Messages</h2>
+            <apex:commandButton value="Confirm" action="{!msgConfirm}"/>
+            <apex:commandButton value="Info" action="{!msgInfo}"/>
+            <apex:commandButton value="Warn" action="{!msgWarn}"/>
+            <apex:commandButton value="Error" action="{!msgError}"/>
+
+            <h2 class="subtitle">Intelligent Messages</h2>
+            <apex:commandButton value="Confirm" action="{!msgConfirmAuto}"/>
+            <apex:commandButton value="Info" action="{!msgInfoAuto}"/>
+            <apex:commandButton value="Warn" action="{!msgWarnAuto}"/>
+            <apex:commandButton value="Error" action="{!msgErrorAuto}"/>
+
+            <h2 class="subtitle">Manual Time Messages</h2>
+            <apex:outputLabel value="Seconds: " for="seconds"/><apex:inputText id="seconds" value="{!seconds}" /><br/>
+            <apex:commandButton value="Confirm" action="{!msgConfirmManual}"/>
+            <apex:commandButton value="Info" action="{!msgInfoManual}"/>
+            <apex:commandButton value="Warn" action="{!msgWarnManual}"/>
+            <apex:commandButton value="Error" action="{!msgErrorManual}"/>
+        </apex:form>
+    </div>
+    <div class="col-md-6">
+        <c:PageAlerts />
+    </div>
+</div>
+
+
+</apex:page>

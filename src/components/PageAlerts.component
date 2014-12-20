@@ -1,0 +1,27 @@
+<apex:component controller="PageAlerts">
+<script type="text/javascript">
+var pa = jQuery.noConflict();
+pa(document).ready(function() {
+    applyAutoDismiss();
+});
+
+var applyAutoDismiss = function() {
+    pa('.alert.autodismiss').each(function() {
+        pa(this).delay(parseInt(pa(this).data('dismiss-after'))).fadeOut('slow');
+    });
+}
+</script>
+
+    <apex:repeat value="{!messages}" var="m" id="pageMessages">
+        <div class="alert {!IF(m.severityStr == 'confirm','alert-success', IF(m.severityStr == 'info','alert-info', IF(m.severityStr == 'warn','alert-warning','alert-danger')))} {!IF(m.autoDismissable, 'autodismiss', '')}" data-dismiss-after="{!IF(m.autoDismissable, m.milliSeconds, '')}">
+            <apex:outputPanel layout="none" rendered="{!m.isDismissable}"><button type="button" class="close" data-dismiss="alert">&times;</button></apex:outputPanel>
+            <span class="alert-icon">
+                <apex:outputPanel layout="none" rendered="{!m.severityStr == 'confirm'}"><i class="glyphicon glyphicon-ok-sign"></i></apex:outputPanel>
+                <apex:outputPanel layout="none" rendered="{!m.severityStr == 'info'}"><i class="glyphicon glyphicon-info-sign"></i></apex:outputPanel>
+                <apex:outputPanel layout="none" rendered="{!m.severityStr == 'warn'}"><i class="glyphicon glyphicon-warning-sign"></i></apex:outputPanel>
+                <apex:outputPanel layout="none" rendered="{!m.severityStr == 'error'}"><i class="glyphicon glyphicon-exclamation-sign"></i></apex:outputPanel>
+            &nbsp;</span>
+            <span class="alert-msg">{!m.message}</span>
+        </div>
+    </apex:repeat>
+</apex:component>
