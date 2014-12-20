@@ -1,10 +1,11 @@
 public with sharing class SlackWebhook
 {
     @future(callout=true)
-    public static void postFeedItem( String text, String postId )
+    public static void postFeedItem( String feedItemJSON )
     {
-        String link = URL.getSalesforceBaseUrl().toExternalForm() + '/' + postId;
-        String message = text + '\n View this message in Salesforce: ' + link;
+        Map<String,Object> feedItem = (Map<String,Object>)JSON.deserializeUntyped(feedItemJSON);
+        String link = URL.getSalesforceBaseUrl().toExternalForm() + '/' + (String)feedItem.get('Id');
+        String message = (String)feedItem.get('Body') + '\n View this message in Salesforce: ' + link;
         String body = 'token=xoxp-3264660775-3264660783-3266379624-029e7a';
         body += '&channel=C037SKEPK';
         body += '&text=' + EncodingUtil.urlEncode(message, 'UTF-8');
