@@ -1,4 +1,5 @@
-
+build.xml
+build.properties
 config/
 experimental.sublime-project
 experimental.sublime-settings
